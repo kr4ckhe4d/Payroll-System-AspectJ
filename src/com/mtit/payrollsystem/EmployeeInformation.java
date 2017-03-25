@@ -31,6 +31,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class EmployeeInformation extends JFrame {
 
@@ -91,6 +92,7 @@ public class EmployeeInformation extends JFrame {
 		txtEID = new JTextField();
 		txtEID.setColumns(10);
 		JButton btnRemove = new JButton("Remove ");
+		btnRemove.setForeground(Color.RED);
 		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {

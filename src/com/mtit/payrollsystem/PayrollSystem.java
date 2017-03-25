@@ -73,6 +73,11 @@ public class PayrollSystem {
 		});
 		
 		JButton btnCalculateSalary = new JButton("Calculate Salary");
+		btnCalculateSalary.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CalculateSalary().setVisible(true);
+			}
+		});
 		
 		JButton btnCalculateEpf = new JButton("Create Employee");
 		

@@ -43,10 +43,14 @@ public class Employee {
 		return eSalary;
 	}
 	
-	public double getNetSalary(double hours){
+	public double getNetSalary(int hours){
 		return this.getSalary() + hours*1000.00 - this.getSalary() * this.getEPF();
 	}
-
+	
+	public double getEPFAmt() {
+		return eEPF * getSalary();
+	}
+	
 	public void setSalary(double salary) {
 		this.eSalary = salary;
 	}
