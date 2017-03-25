@@ -50,6 +50,9 @@ public class PayrollSystem {
 	private void initialize() {
 		ServiceManager.getEmployeeService().createEmployeeTbl();
 		List<Employee> list = ServiceManager.getEmployeeService().getEmployees();
+		/**
+		 * Add two dummy data if the table does not have any data
+		 */
 		if(list.isEmpty()){
 			Employee employee1 = new Employee(0,"Nipuna H Herath","Software Engineer",80000.00,0.12);
 			ServiceManager.getEmployeeService().addEmployee(employee1);
@@ -80,35 +83,38 @@ public class PayrollSystem {
 		});
 		
 		JButton btnCalculateEpf = new JButton("Create Employee");
-		
-		JButton btnViewAllEmployees = new JButton("View All Employees");
+		btnCalculateEpf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CreateEmployee().setVisible(true);
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(35)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnViewAllEmployees, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-						.addComponent(btnCalculateEpf, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-						.addComponent(btnCalculateSalary, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-						.addComponent(btnEmployeeInformation, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblEmployeePayrollSystem, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(lblEmployeePayrollSystem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(30))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnEmployeeInformation, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+						.addComponent(btnCalculateSalary, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+						.addComponent(btnCalculateEpf, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+					.addGap(20))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(16)
 					.addComponent(lblEmployeePayrollSystem)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
 					.addComponent(btnEmployeeInformation, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(28)
 					.addComponent(btnCalculateSalary, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(18)
 					.addComponent(btnCalculateEpf, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnViewAllEmployees, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addGap(17))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
