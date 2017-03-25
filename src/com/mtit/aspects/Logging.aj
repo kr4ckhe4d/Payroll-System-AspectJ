@@ -18,6 +18,12 @@ public aspect Logging {
 		System.out.println("************************************************************************");
 	}
 	
+	after() : execution(* insertEmployee(..)) {
+		System.out.println("************************************************************************");
+		System.out.println(Constants.LOG_TAG + "Employee Created..");
+		System.out.println("************************************************************************");
+	}
+	
 	after() returning(Employee emp) : execution(* loginUser(..)) {
 		
 		System.out.println("************************************************************************");
@@ -28,9 +34,7 @@ public aspect Logging {
 		}
 		System.out.println("************************************************************************");
 	}
-	//createEmployeeTable
-	
-	
+	//insertEmployee
 	
 	after() throwing(SQLException ex) : execution(* *(..)) {
 		System.out.println("************************************************************************");
