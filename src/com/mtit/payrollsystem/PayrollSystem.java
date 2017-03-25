@@ -11,6 +11,7 @@ import com.mtit.service.ServiceManager;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -47,6 +48,16 @@ public class PayrollSystem {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ServiceManager.getEmployeeService().createEmployeeTbl();
+		List<Employee> list = ServiceManager.getEmployeeService().getEmployees();
+		if(list.isEmpty()){
+			Employee employee1 = new Employee(0,"Nipuna H Herath","Software Engineer",80000.00,0.12);
+			ServiceManager.getEmployeeService().addEmployee(employee1);
+			Employee employee2 = new Employee(0,"Madumal Sameera Piyasundara","Software Engineer",120000.00,0.12);
+			ServiceManager.getEmployeeService().addEmployee(employee2);
+			Employee employee3 = new Employee(0,"Nilesh Jayanandana","Software Engineer",150000.00,0.12);
+			ServiceManager.getEmployeeService().addEmployee(employee3);
+		}
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +74,7 @@ public class PayrollSystem {
 		
 		JButton btnCalculateSalary = new JButton("Calculate Salary");
 		
-		JButton btnCalculateEpf = new JButton("Calculate EPF");
+		JButton btnCalculateEpf = new JButton("Create Employee");
 		
 		JButton btnViewAllEmployees = new JButton("View All Employees");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());

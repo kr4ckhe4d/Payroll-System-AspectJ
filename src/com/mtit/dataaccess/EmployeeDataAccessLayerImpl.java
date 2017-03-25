@@ -57,7 +57,7 @@ public class EmployeeDataAccessLayerImpl implements EmployeeDataAccessLayer{
 		
 		Connection connection = DatabaseConnection.getConnection();
 		
-		PreparedStatement statement = connection.prepareStatement("UPDATE Movie SET title=?, genre=?, year=?, rating=? WHERE id=?");
+		PreparedStatement statement = connection.prepareStatement("UPDATE Employee SET fName=?, designation=?, salary=?, epf=? WHERE id=?");
 		statement.setString(1, emp.getFullName());
 		statement.setString(2, emp.getDesignation());
 		statement.setDouble(3, emp.getSalary());
@@ -80,7 +80,7 @@ public class EmployeeDataAccessLayerImpl implements EmployeeDataAccessLayer{
 		Connection connection = DatabaseConnection.getConnection();
 		
 		Statement statement = connection.createStatement();
-		boolean result = statement.execute("DELETE FROM Movie WHERE id = " + emp.getID());
+		boolean result = statement.execute("DELETE FROM Employee WHERE id = " + emp.getID());
 	
         statement.close();
         DatabaseConnection.closeConnection();
@@ -94,7 +94,7 @@ public class EmployeeDataAccessLayerImpl implements EmployeeDataAccessLayer{
 		Connection connection = DatabaseConnection.getConnection();
 		
 		Statement statement = connection.createStatement();
-		ResultSet rs = statement.executeQuery("SELECT * FROM Movie");
+		ResultSet rs = statement.executeQuery("SELECT * FROM Employee");
 		
 		List<Employee> list = new Vector<Employee>();
 		

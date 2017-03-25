@@ -24,6 +24,12 @@ public aspect Logging {
 		System.out.println("************************************************************************");
 	}
 	
+	after() : execution(* deleteEmployee(..)) {
+		System.out.println("************************************************************************");
+		System.out.println(Constants.LOG_TAG + "Employee Deleted..");
+		System.out.println("************************************************************************");
+	}
+	//deleteEmployee
 	after() returning(Employee emp) : execution(* loginUser(..)) {
 		
 		System.out.println("************************************************************************");
